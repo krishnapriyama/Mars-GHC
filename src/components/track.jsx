@@ -1,4 +1,4 @@
-import arrow from "../assets/vector.png";
+import arrow from "../assets/arrow.png";
 const Track = () => {
   return (
     <>
