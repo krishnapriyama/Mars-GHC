@@ -25,7 +25,10 @@ const homepage = () => {
     <Skincare/>
     <CareSkin/>
     <InstaTrack/>
+    <div className="static">
+
     <Footer/>
+    </div>
     </>
   )
 }

@@ -2,8 +2,27 @@ import track from "../assets/track.png";
 import wallet from "../assets/wallet.png";
 import blogs from "../assets/blogs.png";
 import consult from "../assets/consult.png";
+import { useEffect, useState } from "react";
 
 const Menu = () => {
+  const [currentTime, setCurrentTime] = useState(getCurrentTime());
+
+  function getCurrentTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(getCurrentTime());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+
   const cardData = [
     { title: "TRACK", imgSrc: track, bgColor: "#CDCCF3" },
     { title: "WALLET", imgSrc: wallet, bgColor: "#F5FCC6" },
@@ -22,8 +41,11 @@ const Menu = () => {
   ];
   return (
     <div className="w-full">
-      <div className="ml-10 lg:text-3xl text-2xl">
+      <div className="ml-10 lg:text-3xl text-2xl flex">
         Welcome, <span className="font-bold">June!</span>
+        <div className="absolute right-0 mr-7">
+          <h1>{currentTime}</h1>
+        </div>
       </div>
       <div className="w-full flex justify-center">
         <div className="w-full flex justify-center items-center p-3 overflow-x-scroll md:overflow-auto ">
